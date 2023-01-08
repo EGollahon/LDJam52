@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   ownPlant: {fileID: 0}
 --- !u!50 &213167333
 Rigidbody2D:
@@ -3082,7 +3082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 0
   ownPlant: {fileID: 0}
 --- !u!1 &495516639
 GameObject:
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 0
   ownPlant: {fileID: 0}
 --- !u!50 &495516641
 Rigidbody2D:
@@ -3264,7 +3264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 0
   ownPlant: {fileID: 0}
 --- !u!50 &498343851
 Rigidbody2D:
@@ -4869,7 +4869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   ownPlant: {fileID: 0}
 --- !u!50 &1003183429
 Rigidbody2D:
@@ -5227,10 +5227,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLevel: 6
-  actionsLeft: 100
-  waterActionsLeft: 29
-  fertilizerActionsLeft: 31
-  quota: 70
+  actionsLeft: 500
+  waterActionsLeft: 100
+  fertilizerActionsLeft: 100
+  quota: 150
   currentMoney: 0
   player: {fileID: 280902607}
   canvas: {fileID: 2120013119}
@@ -5263,31 +5263,31 @@ MonoBehaviour:
     profit: 2
     baseWaterNeed: 1
     baseFertilizerNeed: 1
-    quantity: 1
+    quantity: 12
   - type: 2
     name: Tomato
     profit: 5
     baseWaterNeed: 2
     baseFertilizerNeed: 2
-    quantity: 4
+    quantity: 12
   - type: 3
     name: Berry
     profit: 5
     baseWaterNeed: 1
     baseFertilizerNeed: 3
-    quantity: 4
+    quantity: 12
   - type: 4
     name: Pumpkin
     profit: 10
     baseWaterNeed: 4
     baseFertilizerNeed: 2
-    quantity: 2
+    quantity: 12
   - type: 5
     name: Corn
     profit: 10
     baseWaterNeed: 3
     baseFertilizerNeed: 3
-    quantity: 2
+    quantity: 12
 --- !u!4 &1053692951
 Transform:
   m_ObjectHideFlags: 0
@@ -7354,7 +7354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   ownPlant: {fileID: 0}
 --- !u!50 &1651104467
 Rigidbody2D:
@@ -8967,7 +8967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  type: 0
   ownPlant: {fileID: 0}
 --- !u!50 &2073094651
 Rigidbody2D:

@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 3
   ownPlant: {fileID: 0}
 --- !u!50 &68639483
 Rigidbody2D:
@@ -920,7 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 0
   ownPlant: {fileID: 0}
 --- !u!50 &103508473
 Rigidbody2D:
@@ -1252,7 +1252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &192722998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   ownPlant: {fileID: 0}
 --- !u!50 &213167333
 Rigidbody2D:
@@ -3082,7 +3082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  type: 2
   ownPlant: {fileID: 0}
 --- !u!1 &495516639
 GameObject:
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   ownPlant: {fileID: 0}
 --- !u!50 &495516641
 Rigidbody2D:
@@ -3264,7 +3264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   ownPlant: {fileID: 0}
 --- !u!50 &498343851
 Rigidbody2D:
@@ -4856,7 +4856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1003183428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5226,11 +5226,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31a2b6fea48a7b1691b63e68bb17193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: 2
-  actionsLeft: 10
-  waterActionsLeft: 3
-  fertilizerActionsLeft: 3
-  quota: 1
+  nextLevel: 5
+  actionsLeft: 55
+  waterActionsLeft: 26
+  fertilizerActionsLeft: 14
+  quota: 60
   currentMoney: 0
   player: {fileID: 280902607}
   canvas: {fileID: 2120013119}
@@ -5263,31 +5263,31 @@ MonoBehaviour:
     profit: 2
     baseWaterNeed: 1
     baseFertilizerNeed: 1
-    quantity: 1
+    quantity: 0
   - type: 2
     name: Tomato
     profit: 5
     baseWaterNeed: 2
     baseFertilizerNeed: 2
-    quantity: 1
+    quantity: 0
   - type: 3
     name: Berry
     profit: 5
     baseWaterNeed: 1
     baseFertilizerNeed: 3
-    quantity: 1
+    quantity: 0
   - type: 4
     name: Pumpkin
     profit: 10
     baseWaterNeed: 4
     baseFertilizerNeed: 2
-    quantity: 1
+    quantity: 4
   - type: 5
     name: Corn
     profit: 10
     baseWaterNeed: 3
     baseFertilizerNeed: 3
-    quantity: 1
+    quantity: 4
 --- !u!4 &1053692951
 Transform:
   m_ObjectHideFlags: 0
@@ -6274,7 +6274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   ownPlant: {fileID: 0}
 --- !u!50 &1305339426
 Rigidbody2D:
@@ -7354,7 +7354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
   ownPlant: {fileID: 0}
 --- !u!50 &1651104467
 Rigidbody2D:

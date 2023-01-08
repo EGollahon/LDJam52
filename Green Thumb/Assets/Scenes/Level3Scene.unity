@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 4
   ownPlant: {fileID: 0}
 --- !u!50 &68639483
 Rigidbody2D:
@@ -920,7 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 0
   ownPlant: {fileID: 0}
 --- !u!50 &103508473
 Rigidbody2D:
@@ -3082,7 +3082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  type: 0
   ownPlant: {fileID: 0}
 --- !u!1 &495516639
 GameObject:
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 3
   ownPlant: {fileID: 0}
 --- !u!50 &495516641
 Rigidbody2D:
@@ -5226,10 +5226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31a2b6fea48a7b1691b63e68bb17193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: 2
-  actionsLeft: 100
-  waterActionsLeft: 100
-  fertilizerActionsLeft: 100
+  nextLevel: 4
+  actionsLeft: 42
+  waterActionsLeft: 12
+  fertilizerActionsLeft: 16
   quota: 40
   currentMoney: 0
   player: {fileID: 280902607}
@@ -5263,7 +5263,7 @@ MonoBehaviour:
     profit: 2
     baseWaterNeed: 1
     baseFertilizerNeed: 1
-    quantity: 0
+    quantity: 2
   - type: 2
     name: Tomato
     profit: 5
@@ -5275,7 +5275,7 @@ MonoBehaviour:
     profit: 5
     baseWaterNeed: 1
     baseFertilizerNeed: 3
-    quantity: 5
+    quantity: 1
   - type: 4
     name: Pumpkin
     profit: 10
@@ -6274,7 +6274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   ownPlant: {fileID: 0}
 --- !u!50 &1305339426
 Rigidbody2D:
@@ -8967,7 +8967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bcb376bddb3dd91aba75cc67aceea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  type: 3
   ownPlant: {fileID: 0}
 --- !u!50 &2073094651
 Rigidbody2D:

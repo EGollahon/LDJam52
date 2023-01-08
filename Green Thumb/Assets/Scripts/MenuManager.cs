@@ -23,6 +23,8 @@ public class MenuManager : MonoBehaviour
                 button.GetComponent<Button>().onClick.AddListener(() => LoadLevel(4));
             } else if (levelNum == 5) {
                 button.GetComponent<Button>().onClick.AddListener(() => LoadLevel(5));
+            } else if (levelNum == 6) {
+                button.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("CreativeModeScene"));
             }
             
             levelNum++;

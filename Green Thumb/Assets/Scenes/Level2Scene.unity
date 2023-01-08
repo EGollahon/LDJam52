@@ -5226,7 +5226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31a2b6fea48a7b1691b63e68bb17193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: 2
+  nextLevel: 3
   actionsLeft: 35
   waterActionsLeft: 12
   fertilizerActionsLeft: 9
