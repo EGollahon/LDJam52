@@ -30,10 +30,8 @@ public class LevelManager : MonoBehaviour
         UpdateMoney();
         UpdateSoil();
         canvas.transform.Find("Actions Left").gameObject.GetComponent<TextMeshProUGUI>().text = actionsLeft.ToString() + " actions left";
-        HideActionDetail();
-        HidePlantDetail();
-        CheckButtons();
         UpdateQuantities();
+        CheckButtons();
     }
 
     public void OnMove() {
@@ -42,13 +40,19 @@ public class LevelManager : MonoBehaviour
         canvas.transform.Find("Soil Info/Soil Type").gameObject.GetComponent<TextMeshProUGUI>().text = soilTypes[soilIndex].name;
         canvas.transform.Find("Soil Info/Water Effect").gameObject.GetComponent<TextMeshProUGUI>().text = soilTypes[soilIndex].name;
         UpdateSoil();
-        SubtractAction();
+        SubtractAction(ActionType.Plant);
         CheckButtons();
     }
 
-    void SubtractAction() {
+    void SubtractAction(ActionType action) {
         actionsLeft--;
         canvas.transform.Find("Actions Left").gameObject.GetComponent<TextMeshProUGUI>().text = actionsLeft.ToString() + " actions left";
+        if (action == ActionType.Water) {
+            waterActionsLeft--;
+        } else if (action == ActionType.Fertilize) {
+            fertilizerActionsLeft--;
+        }
+        UpdateQuantities();
         if (actionsLeft <= 0) {
             EndLevel();
         }
@@ -60,21 +64,21 @@ public class LevelManager : MonoBehaviour
         player.GetComponent<PlayerController>().CheckAllowedActions();
         foreach (Transform button in canvas.transform.Find("Buttons"))
         {
-            if (button.parent == canvas.transform.Find("Buttons") && actionsLeft > 0) {
+            if (button.parent == canvas.transform.Find("Buttons")) {
                 if (button.name == "Water Button") {
-                    if (player.GetComponent<PlayerController>().isWateringAllowed && waterActionsLeft > 0) {
+                    if (player.GetComponent<PlayerController>().isWateringAllowed && waterActionsLeft > 0 && actionsLeft > 0) {
                         EnableButton(button.gameObject.GetComponent<Button>(), ActionType.Water, PlantType.None);
                     } else {
                         DisableButton(button.gameObject.GetComponent<Button>());
                     }
                 } else if (button.name == "Fertilizer Button") {
-                    if (player.GetComponent<PlayerController>().isFertilizingAllowed && fertilizerActionsLeft > 0) {
+                    if (player.GetComponent<PlayerController>().isFertilizingAllowed && fertilizerActionsLeft > 0 && actionsLeft > 0) {
                         EnableButton(button.gameObject.GetComponent<Button>(), ActionType.Fertilize, PlantType.None);
                     } else {
                         DisableButton(button.gameObject.GetComponent<Button>());
                     }
                 } else {
-                    if (player.GetComponent<PlayerController>().isPlantingAllowed) {
+                    if (player.GetComponent<PlayerController>().isPlantingAllowed && actionsLeft > 0) {
                         if (button.name == "Lettuce Button" && plantTypes[plantTypes.FindIndex(element => element.type == PlantType.Lettuce)].quantity > 0) {
                             EnableButton(button.gameObject.GetComponent<Button>(), ActionType.Plant, PlantType.Lettuce);
                         } else if (button.name == "Tomato Button" && plantTypes[plantTypes.FindIndex(element => element.type == PlantType.Tomato)].quantity > 0) {
@@ -85,6 +89,8 @@ public class LevelManager : MonoBehaviour
                             EnableButton(button.gameObject.GetComponent<Button>(), ActionType.Plant, PlantType.Pumpkin);
                         } else if (button.name == "Corn Button" && plantTypes[plantTypes.FindIndex(element => element.type == PlantType.Corn)].quantity > 0) {
                             EnableButton(button.gameObject.GetComponent<Button>(), ActionType.Plant, PlantType.Corn);
+                        } else {
+                            DisableButton(button.gameObject.GetComponent<Button>());
                         }
                     } else {
                         DisableButton(button.gameObject.GetComponent<Button>());
@@ -169,7 +175,7 @@ public class LevelManager : MonoBehaviour
         placedPlants.Add(newPlant);
         
         player.GetComponent<PlayerController>().currentSoil.GetComponent<SoilController>().ownPlant = newPlant;
-        SubtractAction();
+        SubtractAction(ActionType.Plant);
         CheckButtons();
         UpdateMoney();
         UpdateQuantities();
@@ -177,7 +183,7 @@ public class LevelManager : MonoBehaviour
 
     void PlantAction(ActionType action) {
         player.GetComponent<PlayerController>().currentSoil.GetComponent<SoilController>().ownPlant.GetComponent<PlantController>().CareForPlant(action);
-        SubtractAction();
+        SubtractAction(action);
         CheckButtons();
         UpdateMoney();
         UpdateQuantities();

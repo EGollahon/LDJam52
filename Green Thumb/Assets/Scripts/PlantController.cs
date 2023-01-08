@@ -87,8 +87,12 @@ public class PlantController : MonoBehaviour
             transform.Find("Canvas/Needs/Quantity 1").gameObject.GetComponent<TextMeshProUGUI>().text = fertilizerNeeded.ToString();
             transform.Find("Canvas/Needs/Slot 2").gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("blank-icon");
             transform.Find("Canvas/Needs/Quantity 2").gameObject.GetComponent<TextMeshProUGUI>().text = "";
-        } else {
-            transform.Find("Canvas").gameObject.SetActive(false);
+        } else if (waterNeeded <= 0 && fertilizerNeeded <= 0) {
+            transform.Find("Canvas/Needs").gameObject.GetComponent<Image>().sprite = indicatorSprites[0];
+            transform.Find("Canvas/Needs/Slot 1").gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("coin-icon");
+            transform.Find("Canvas/Needs/Quantity 1").gameObject.GetComponent<TextMeshProUGUI>().text = profit.ToString();
+            transform.Find("Canvas/Needs/Slot 2").gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("blank-icon");
+            transform.Find("Canvas/Needs/Quantity 2").gameObject.GetComponent<TextMeshProUGUI>().text = "";
         }
     }
 }
