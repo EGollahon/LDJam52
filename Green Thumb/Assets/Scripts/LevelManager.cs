@@ -175,18 +175,18 @@ public class LevelManager : MonoBehaviour
         placedPlants.Add(newPlant);
         
         player.GetComponent<PlayerController>().currentSoil.GetComponent<SoilController>().ownPlant = newPlant;
-        SubtractAction(ActionType.Plant);
-        CheckButtons();
         UpdateMoney();
         UpdateQuantities();
+        SubtractAction(ActionType.Plant);
+        CheckButtons();
     }
 
     void PlantAction(ActionType action) {
         player.GetComponent<PlayerController>().currentSoil.GetComponent<SoilController>().ownPlant.GetComponent<PlantController>().CareForPlant(action);
-        SubtractAction(action);
-        CheckButtons();
         UpdateMoney();
         UpdateQuantities();
+        SubtractAction(action);
+        CheckButtons();
     }
 
     void UpdateMoney() {
