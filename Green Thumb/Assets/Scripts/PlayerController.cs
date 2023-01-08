@@ -15,6 +15,14 @@ public class PlayerController : MonoBehaviour
     public bool isFertilizingAllowed;
     public bool isPlantingAllowed;
 
+    public Vector2 startPosition;
+    public Vector2 targetPosition;
+    public Vector2 arcControlPosition;
+    public float arcHeight = 0.5f;
+
+    public Vector2 vectorA;
+    public Vector2 vectorB;
+
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -26,13 +34,17 @@ public class PlayerController : MonoBehaviour
     {
         if (moveCooldownTimer >= 0) {
             moveCooldownTimer -= Time.deltaTime;
+            vectorA = Vector2.Lerp(startPosition, arcControlPosition, moveCooldownTimer);
+            vectorB = Vector2.Lerp(arcControlPosition, targetPosition, moveCooldownTimer);
+            transform.position = Vector2.Lerp(vectorA, vectorB, moveCooldownTimer);
+
             if (moveCooldownTimer < 0) {
-                float movement = Input.GetAxis("Horizontal");
-                if (movement > 0.5) {
-                    Move(ArrowDirection.Right);
-                } else if (movement < -0.5) {
-                    Move(ArrowDirection.Left);
-                }
+                // float movement = Input.GetAxis("Horizontal");
+                // if (movement > 0.5) {
+                //     Move(ArrowDirection.Right);
+                // } else if (movement < -0.5) {
+                //     Move(ArrowDirection.Left);
+                // }
             }
         } else {
             float movement = Input.GetAxis("Horizontal");
@@ -43,6 +55,12 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    // void FixedUpdate() {
+    //     if (moveCooldownTimer >= 0) {
+    //         playerRigidbody.MovePosition(Vector2.Lerp(vectorA, vectorB, moveCooldownTimer));
+    //     }
+    // }
 
     void Move(ArrowDirection arrowDirection)
     {
@@ -62,7 +80,9 @@ public class PlayerController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(playerRigidbody.position, direction, 1.0f, layerMask);
             if (hit.collider != null)
             {
-                isMoving = true;
+                startPosition = playerRigidbody.position;
+                targetPosition = new Vector2(playerRigidbody.position.x + direction.x, playerRigidbody.position.y);
+                arcControlPosition = new Vector2(playerRigidbody.position.x + (direction.x/2), arcHeight);
 
                 if (arrowDirection == ArrowDirection.Left) {
                     playerRenderer.flipX = false;
@@ -70,12 +90,11 @@ public class PlayerController : MonoBehaviour
                     playerRenderer.flipX = true;
                 }
 
-                transform.position = new Vector2(hit.transform.position.x, playerRigidbody.position.y);
+                // transform.position = new Vector2(hit.transform.position.x, playerRigidbody.position.y);
                 currentSoil.layer = soilLayer;
                 currentSoil = hit.transform.gameObject;
                 currentSoil.layer = currentSpaceLayer;
                 levelManager.GetComponent<LevelManager>().OnMove();
-                isMoving = false;
 
                 CheckAllowedActions();
             } else {
