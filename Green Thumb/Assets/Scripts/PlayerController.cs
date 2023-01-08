@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public GameObject levelManager;
     public GameObject currentSoil;
     public float moveCooldownTimer = -1.0f;
-    public bool isMoving = false;
+    public float moveCooldownLength = 0.75f;
 
     public bool isWateringAllowed;
     public bool isFertilizingAllowed;
@@ -34,17 +34,12 @@ public class PlayerController : MonoBehaviour
     {
         if (moveCooldownTimer >= 0) {
             moveCooldownTimer -= Time.deltaTime;
-            vectorA = Vector2.Lerp(startPosition, arcControlPosition, moveCooldownTimer);
-            vectorB = Vector2.Lerp(arcControlPosition, targetPosition, moveCooldownTimer);
-            transform.position = Vector2.Lerp(vectorA, vectorB, moveCooldownTimer);
+            vectorA = Vector2.Lerp(startPosition, arcControlPosition, 1.0f - (moveCooldownTimer / moveCooldownLength));
+            vectorB = Vector2.Lerp(arcControlPosition, targetPosition, 1.0f - (moveCooldownTimer / moveCooldownLength));
+            transform.position = Vector2.Lerp(vectorA, vectorB, 1.0f - (moveCooldownTimer / moveCooldownLength));
 
             if (moveCooldownTimer < 0) {
-                // float movement = Input.GetAxis("Horizontal");
-                // if (movement > 0.5) {
-                //     Move(ArrowDirection.Right);
-                // } else if (movement < -0.5) {
-                //     Move(ArrowDirection.Left);
-                // }
+                levelManager.GetComponent<LevelManager>().OnMove();
             }
         } else {
             float movement = Input.GetAxis("Horizontal");
@@ -56,19 +51,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // void FixedUpdate() {
-    //     if (moveCooldownTimer >= 0) {
-    //         playerRigidbody.MovePosition(Vector2.Lerp(vectorA, vectorB, moveCooldownTimer));
-    //     }
-    // }
-
     void Move(ArrowDirection arrowDirection)
     {
         if (levelManager.GetComponent<LevelManager>().actionsLeft > 0) {
             isWateringAllowed = false;
             isFertilizingAllowed = false;
             isPlantingAllowed = false;
-            moveCooldownTimer = 0.5f;
+            moveCooldownTimer = moveCooldownLength;
 
             int currentSpaceLayer = LayerMask.NameToLayer("Current Space");
             int soilLayer = LayerMask.NameToLayer("Soil");
@@ -80,6 +69,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(playerRigidbody.position, direction, 1.0f, layerMask);
             if (hit.collider != null)
             {
+                levelManager.GetComponent<LevelManager>().CheckButtons();
                 startPosition = playerRigidbody.position;
                 targetPosition = new Vector2(playerRigidbody.position.x + direction.x, playerRigidbody.position.y);
                 arcControlPosition = new Vector2(playerRigidbody.position.x + (direction.x/2), arcHeight);
@@ -90,11 +80,9 @@ public class PlayerController : MonoBehaviour
                     playerRenderer.flipX = true;
                 }
 
-                // transform.position = new Vector2(hit.transform.position.x, playerRigidbody.position.y);
                 currentSoil.layer = soilLayer;
                 currentSoil = hit.transform.gameObject;
                 currentSoil.layer = currentSpaceLayer;
-                levelManager.GetComponent<LevelManager>().OnMove();
 
                 CheckAllowedActions();
             } else {
@@ -106,7 +94,8 @@ public class PlayerController : MonoBehaviour
 
     public void CheckAllowedActions() {
         if (
-            currentSoil.GetComponent<SoilController>().ownPlant != null
+            moveCooldownTimer < 0
+            && currentSoil.GetComponent<SoilController>().ownPlant != null
             && currentSoil.GetComponent<SoilController>().ownPlant.GetComponent<PlantController>().waterNeeded > 0
         ) {
             isWateringAllowed = true;
@@ -115,7 +104,8 @@ public class PlayerController : MonoBehaviour
         }
 
         if (
-            currentSoil.GetComponent<SoilController>().ownPlant != null
+            moveCooldownTimer < 0
+            && currentSoil.GetComponent<SoilController>().ownPlant != null
             && currentSoil.GetComponent<SoilController>().ownPlant.GetComponent<PlantController>().fertilizerNeeded > 0
         ) {
             isFertilizingAllowed = true;
@@ -123,7 +113,7 @@ public class PlayerController : MonoBehaviour
             isFertilizingAllowed = false;
         }
 
-        if (currentSoil.GetComponent<SoilController>().ownPlant == null) {
+        if (moveCooldownTimer < 0 && currentSoil.GetComponent<SoilController>().ownPlant == null) {
             isPlantingAllowed = true;
         } else {
             isPlantingAllowed = false;

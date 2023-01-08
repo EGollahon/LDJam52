@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void CheckButtons() {
+    public void CheckButtons() {
         HideActionDetail();
         HidePlantDetail();
         player.GetComponent<PlayerController>().CheckAllowedActions();
@@ -236,6 +236,21 @@ public class LevelManager : MonoBehaviour
         SoilType soilType = player.GetComponent<PlayerController>().currentSoil.GetComponent<SoilController>().type;
         int soilIndex = soilTypes.FindIndex(element => element.type == soilType);
         canvas.transform.Find("Soil Info/Soil Type").gameObject.GetComponent<TextMeshProUGUI>().text = soilTypes[soilIndex].name;
+
+        Image soilImage = canvas.transform.Find("Soil Info/Soil Slot/Soil Sprite").gameObject.GetComponent<Image>();
+        Sprite[] soilSprites = Resources.LoadAll<Sprite>("soil");
+
+        if (soilType == SoilType.Regular) {
+            soilImage.sprite = soilSprites[0];
+        } else if (soilType == SoilType.Sandy) {
+            soilImage.sprite = soilSprites[1];
+        } else if (soilType == SoilType.Clay) {
+            soilImage.sprite = soilSprites[2];
+        } else if (soilType == SoilType.Silt) {
+            soilImage.sprite = soilSprites[3];
+        } else if (soilType == SoilType.Loam) {
+            soilImage.sprite = soilSprites[4];
+        }
 
         if (soilTypes[soilIndex].waterEffect > 0) {
             canvas.transform.Find("Soil Info/Water Effect").gameObject.GetComponent<TextMeshProUGUI>().text = "+" + soilTypes[soilIndex].waterEffect.ToString();
